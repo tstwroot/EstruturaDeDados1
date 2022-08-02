@@ -60,11 +60,11 @@ bool isFull(const FloatVector * vector)
     return false;
 }
 
-/***
+/**
  * This function append a value into the vector
  * If this function return 0 nothing has been changed in the vector, or some error occured.
  * If this function return 1, the value was inserted into the vector with success.
- * ***/
+ * **/
 void append(FloatVector * vector, float value)
 {
     char choice;
