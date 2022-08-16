@@ -26,7 +26,7 @@ void merge(struct IntVector *intVector, int start, int middle, int end)
     }
     for (int i = 0; i < sizeRight; i++)
     {
-        auxR[i] = intVector->data[middle + i];
+        auxR[i] = intVector->data[middle + 1 + i];
     }
     int i = 0, j = 0, k = start;
     while (i < sizeLeft && j < sizeRight)
