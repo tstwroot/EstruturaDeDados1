@@ -12,7 +12,7 @@ int main(int argc, char* argv[])
     }
     struct IntVector *vector;
     vector = create(atoi(argv[1]));
-    mergesort(vector, 0, atoi(argv[1]));
+    mergesort(vector, 0, vector->capacity);
     print(vector);
     destroy(vector);
 }

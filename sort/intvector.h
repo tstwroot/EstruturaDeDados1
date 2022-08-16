@@ -15,6 +15,7 @@ int at(struct IntVector *vector, int pos);
 int get(struct IntVector *vector, int pos);
 bool isFull(struct IntVector *vector);
 void append(struct IntVector *vector, int n);
+void fillWithRandInt(struct IntVector *vector, int size, int max_rand);
 void print(struct IntVector *vector);
 
 #endif

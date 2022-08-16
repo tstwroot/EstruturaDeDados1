@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <time.h>
 
 struct IntVector *create(int tam)
 {
@@ -99,5 +100,14 @@ void print(struct IntVector *vector)
             printf("%d,");
         }
         else printf("%d]");
+    }
+}
+
+void fillWithRandInt(struct IntVector *vector, int size, int max_rand)
+{
+    srand(time(NULL));
+    for(int i = 0; i < size; i++)
+    {
+        vector->data[i] = rand() % max_rand;
     }
 }
