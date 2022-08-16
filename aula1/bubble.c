@@ -15,6 +15,11 @@ int *genRandVector(int size, int max)
     return vector;
 }
 
+void destroyVector(int *vector)
+{
+	free(vector);
+}
+
 void swap(int *a, int *b)
 {
     int aux = *a;
@@ -63,5 +68,6 @@ int main(void)
     clock_t end = clock();
     time_spent += (double)(end - begin) / CLOCKS_PER_SEC;
     printVector(vector, SIZE);
+    destroyVector(vector);
     printf("Tempo de execução: %f segundos\n", time_spent);
 }
