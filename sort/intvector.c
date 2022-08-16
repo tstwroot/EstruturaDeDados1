@@ -93,21 +93,21 @@ void append(struct IntVector * vector, int value)
 void print(struct IntVector *vector)
 {
     printf("vector[");
-    for(int i = 0; i < vector->size; i++)
+    for(int i = 0; i < vector->capacity; i++)
     {
         if(i == vector->size - 1)
         {
-            printf("%d,");
+            printf("%d]\n", vector->data[i]);
         }
-        else printf("%d]");
+        else printf("%d, ", vector->data[i]);
     }
 }
 
 void fillWithRandInt(struct IntVector *vector, int size, int max_rand)
 {
-    srand(time(NULL));
     for(int i = 0; i < size; i++)
     {
         vector->data[i] = rand() % max_rand;
+        vector->size = size;
     }
 }
