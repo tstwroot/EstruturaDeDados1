@@ -7,29 +7,31 @@
 
 void mergesort(struct IntVector *intVector, int start, int end)
 {
-    if (start < end)
+    if(start < end)
     {
-        int meio = start + (end - start) / 2;
-        mergesort(intVector, start, meio);
-        mergesort(intVector, meio + 1, end);
-        merge(intVector, start, meio, end);
+        int middle = (end+start) / 2;
+        mergesort(intVector, start, middle);
+        mergesort(intVector, middle + 1, end);
+        merge2(intVector, start, middle, end);
     }
 }
 
 void merge(struct IntVector *intVector, int start, int middle, int end)
 {
-    int sizeLeft = middle - start + 1, sizeRight = end - middle;
+    int sizeLeft = middle - start, sizeRight = end - middle;
     int auxL[sizeLeft], auxR[sizeRight];
-    for (int i = 0; i < sizeLeft; i++)
+    printf("SIZEL: %d\n", sizeLeft);
+    printf("SIZER: %d\n", sizeRight);
+    for(int i = 0; i < sizeLeft; i++)
     {
         auxL[i] = intVector->data[start + i];
     }
-    for (int i = 0; i < sizeRight; i++)
+    for(int i = 0; i < sizeRight; i++)
     {
-        auxR[i] = intVector->data[middle + 1 + i];
+        auxR[i] = intVector->data[middle + i];
     }
     int i = 0, j = 0, k = start;
-    while (i < sizeLeft && j < sizeRight)
+    while(i < sizeLeft && j < sizeRight)
     {
         if (auxL[i] <= auxR[j])
         {

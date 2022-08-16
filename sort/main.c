@@ -12,8 +12,12 @@ int main(int argc, char* argv[])
     }
     struct IntVector *vector;
     vector = create(atoi(argv[1]));
+    puts("Vetor criado!");
     fillWithRandInt(vector, vector->capacity, 10);
+    print(vector);
+    puts("Iniciando a ordenação!");
     mergesort(vector, 0, vector->capacity);
+    puts("Finalizado!");
     print(vector);
     destroy(vector);
 }
