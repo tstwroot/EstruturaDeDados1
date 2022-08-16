@@ -1,41 +1,33 @@
-#include "floatvector.h"
+#include "intvector.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
-typedef struct FloatVector {
-    int capacity; // num max de elementos
-    int size; // quantidade atual de elementos
-    float *data;
-}FloatVector;
-
-FloatVector *create(int tam)
+struct IntVector *create(int tam)
 {
-    FloatVector *vet = (FloatVector*)calloc(1, sizeof(FloatVector));
+    struct IntVector *vet = (struct IntVector*)calloc(1, sizeof(struct IntVector));
     vet->capacity = tam;
     vet->size = 0;
     vet->data = (float*)calloc(tam, sizeof(float));
     return vet;
 }
 
-void destroy(FloatVector **vet_ref)
+void destroy(struct IntVector *vector)
 {
-    FloatVector *vet = *vet_ref;
-    free(vet);
-    *vet_ref = NULL;
+    free(vector);
 }
 
-int size(const FloatVector * vector)
+int size(struct IntVector * vector)
 {
     return vector->size;
 }
 
-int capacity(const FloatVector * vector)
+int capacity(struct IntVector * vector)
 {
     return vector->size;
 }
 
-float at(const FloatVector * vector, int pos)
+int at(struct IntVector * vector, int pos)
 {
     if(pos < 0 || pos >= vector->size)
     {
@@ -46,12 +38,12 @@ float at(const FloatVector * vector, int pos)
     return vector->data[pos];
 }
 
-float get(const FloatVector * vector, int pos)
+int get(struct IntVector * vector, int pos)
 {
     return vector->data[pos];
 }
 
-bool isFull(const FloatVector * vector)
+bool isFull(struct IntVector * vector)
 {
     if(vector->size == vector->capacity)
     {
@@ -65,7 +57,7 @@ bool isFull(const FloatVector * vector)
  * If this function return 0 nothing has been changed in the vector, or some error occured.
  * If this function return 1, the value was inserted into the vector with success.
  * **/
-void append(FloatVector * vector, float value)
+void append(struct IntVector * vector, int value)
 {
     char choice;
     if(isFull(vector))
@@ -74,7 +66,7 @@ void append(FloatVector * vector, float value)
         scanf(" %c", &choice);
         if(strcmp(choice, "1"))
         {
-            vector = (FloatVector*)realloc(vector, vector->capacity + 1 * sizeof(FloatVector));
+            vector = (struct IntVector*)realloc(vector, vector->capacity + 1 * sizeof(struct IntVector));
             vector->capacity++;
             vector->data[vector->capacity+1] = value;
             return 1;
@@ -97,7 +89,15 @@ void append(FloatVector * vector, float value)
     
 }
 
-int main(int argc, char *argv[]) 
+void print(struct IntVector *vector)
 {
-  
+    printf("vector[");
+    for(int i = 0; i < vector->size; i++)
+    {
+        if(i == vector->size - 1)
+        {
+            printf("%d,");
+        }
+        else printf("%d]");
+    }
 }

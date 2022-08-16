@@ -20,7 +20,7 @@ void merge(int arr[], int inicio, int meio, int fim)
     {
         subA[i] = arr[inicio + i];
     }
-    for (int i = 0; i < n1; i++)
+    for (int i = 0; i < n2; i++)
     {
         subB[i] = arr[meio + i];
     }
