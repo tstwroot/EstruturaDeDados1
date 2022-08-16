@@ -28,7 +28,7 @@ void merge(struct IntVector *intVector, int start, int middle, int end)
     {
         auxR[i] = intVector->data[middle + i];
     }
-    int i = 0, j = 0, k = 0;
+    int i = 0, j = 0, k = start;
     while (i < sizeLeft && j < sizeRight)
     {
         if (auxL[i] <= auxR[j])
