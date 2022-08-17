@@ -12,52 +12,49 @@ void mergesort(struct IntVector *intVector, int start, int end)
         int middle = (end+start) / 2;
         mergesort(intVector, start, middle);
         mergesort(intVector, middle + 1, end);
-        merge2(intVector, start, middle, end);
+        merge(intVector, start, middle, end);
     }
 }
 
 void merge(struct IntVector *intVector, int start, int middle, int end)
 {
-    int sizeLeft = middle - start, sizeRight = end - middle;
-    int auxL[sizeLeft], auxR[sizeRight];
-    printf("SIZEL: %d\n", sizeLeft);
-    printf("SIZER: %d\n", sizeRight);
-    for(int i = 0; i < sizeLeft; i++)
+    int auxLeft[(middle)];
+    int auxRight[(end - (middle + 1))];
+    for(int i = start; i <= middle; i++)
     {
-        auxL[i] = intVector->data[start + i];
+        auxLeft[i] = intVector->data[i];
     }
-    for(int i = 0; i < sizeRight; i++)
+    for(int i = (middle+1); i <= end; i++)
     {
-        auxR[i] = intVector->data[middle + i];
+        auxRight[i] = intVector->data[i];
     }
     int i = 0, j = 0, k = start;
-    while(i < sizeLeft && j < sizeRight)
+    while(k <= end)
     {
-        if (auxL[i] <= auxR[j])
+        if(i >= middle+1)
         {
-            intVector->data[k] = auxL[i];
-            i++;
-        }
-
-        else
-        {
-            intVector->data[k] = auxR[j];
+            intVector->data[k] = auxRight[j];
             j++;
         }
-    }
-
-    while(j < sizeRight)
-    {
-        intVector->data[k] = auxR[j];
-        j++;
+        else if(j >= (end - (middle)))
+        {
+            intVector->data[k] = auxLeft[i];
+            i++;
+        }
+        else
+        {
+            if(auxLeft[i] < auxRight[j])
+            {
+                intVector->data[k] = auxLeft[i];
+                i++;
+            }
+            else
+            {
+                intVector->data[k] = auxRight[j];
+                j++;
+            }
+        }
         k++;
-    }
-
-    while(i < sizeLeft)
-    {
-        intVector->data[k] = auxL[i];
-        k++;
-        i++;
     }
 }
 

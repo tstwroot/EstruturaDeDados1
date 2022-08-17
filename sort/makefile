@@ -1,6 +1,6 @@
 all:
-	@gcc -c intvector.c merge.c
-	@gcc main.c -o main intvector.o merge.o
+	@gcc -g -c intvector.c merge.c
+	@gcc -g main.c intvector.o merge.o
 	@rm intvector.o
 	@rm merge.o
-	@./main 10
+	@./a.out 8

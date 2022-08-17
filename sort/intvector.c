@@ -65,16 +65,16 @@ void append(struct IntVector * vector, int value)
     {
         fprintf(stdout, "This vector is done. Do you want reallocate one more element ? ");
         scanf(" %c", &choice);
-        if(strcmp(choice, "1"))
+        if(strcmp(choice, '1'))
         {
             vector = (struct IntVector*)realloc(vector, vector->capacity + 1 * sizeof(struct IntVector));
             vector->capacity++;
             vector->data[vector->capacity+1] = value;
-            return 1;
+            exit(EXIT_SUCCESS);
         }
-        else if(strcmp(choice, "0"))
+        else if(strcmp(choice, '0'))
         {
-            return 0;
+            exit(EXIT_SUCCESS);
         }
         else
         {
@@ -85,7 +85,7 @@ void append(struct IntVector * vector, int value)
     else
     {
         vector->data[vector->size+1] = value;
-        return 1;
+        exit(EXIT_SUCCESS);
     }
     
 }
