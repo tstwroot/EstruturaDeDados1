@@ -5,57 +5,71 @@
 #include <stdlib.h>
 #include "intvector.h"
 
-void mergesort(struct IntVector *intVector, int start, int end)
+void printVector(int *auxLeft, int leftSize, int *auxRight, int rightSize)
 {
-    if(start < end)
+    for(int i = 0; i < leftSize; i++)
     {
-        int middle = (end+start) / 2;
-        mergesort(intVector, start, middle);
-        mergesort(intVector, middle + 1, end);
-        merge(intVector, start, middle, end);
+        printf("%d ", auxLeft[i]);
+    }
+
+    printf("\n");
+    for(int i = 0; i < rightSize; i++)
+    {
+        printf("%d ", auxRight[i]);
+    }
+
+    printf("\n");
+}
+
+void mergesort(struct IntVector *vector, int start, int end)
+{
+    if(end > start)
+    {
+        int middle = start + ((end - start) / 2);
+        mergesort(vector, start, middle);
+        mergesort(vector, (middle + 1), end);
+        merge(vector, start, middle, end);
     }
 }
 
-void merge(struct IntVector *intVector, int start, int middle, int end)
+void merge(struct IntVector *vector, int start, int middle, int end)
 {
-    int auxLeft[(middle)];
-    int auxRight[(end - (middle + 1))];
-    for(int i = start; i <= middle; i++)
-    {
-        auxLeft[i] = intVector->data[i];
-    }
-    for(int i = (middle+1); i <= end; i++)
-    {
-        auxRight[i] = intVector->data[i];
-    }
+    size_t lSize = (middle - start + 1), rSize = (end - middle);
+    int auxL[lSize], auxR[rSize];
+
+    for(int i = 0; i < lSize; i++)
+        auxL[i] = vector->data[start + i];
+    for(int i = 0; i < rSize; i++)
+        auxR[i] = vector->data[middle + 1 + i];
+
     int i = 0, j = 0, k = start;
-    while(k <= end)
+    while(i < lSize && j < rSize)
     {
-        if(i >= middle+1)
+        if(auxL[i] <= auxR[j])
         {
-            intVector->data[k] = auxRight[j];
-            j++;
-        }
-        else if(j >= (end - (middle)))
-        {
-            intVector->data[k] = auxLeft[i];
+            vector->data[k] = auxL[i];
             i++;
         }
         else
         {
-            if(auxLeft[i] < auxRight[j])
-            {
-                intVector->data[k] = auxLeft[i];
-                i++;
-            }
-            else
-            {
-                intVector->data[k] = auxRight[j];
-                j++;
-            }
+            vector->data[k] = auxR[j];
+            j++;
         }
         k++;
     }
-}
 
+    while(i < lSize)
+    {
+        vector->data[k] = auxL[i];
+        i++;
+        k++;
+    }
+
+    while(j < rSize)
+    {
+        vector->data[k] = auxR[j];
+        j++;
+        k++;
+    }
+}
 #endif

@@ -105,6 +105,7 @@ void print(struct IntVector *vector)
 
 void fillWithRandInt(struct IntVector *vector, int size, int max_rand)
 {
+    srand(time(NULL));
     for(int i = 0; i < size; i++)
     {
         vector->data[i] = rand() % max_rand;
