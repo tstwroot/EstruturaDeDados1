@@ -5,22 +5,6 @@
 #include <stdlib.h>
 #include "intvector.h"
 
-void printVector(int *auxLeft, int leftSize, int *auxRight, int rightSize)
-{
-    for(int i = 0; i < leftSize; i++)
-    {
-        printf("%d ", auxLeft[i]);
-    }
-
-    printf("\n");
-    for(int i = 0; i < rightSize; i++)
-    {
-        printf("%d ", auxRight[i]);
-    }
-
-    printf("\n");
-}
-
 void mergesort(struct IntVector *vector, int start, int end)
 {
     if(end > start)
@@ -71,5 +55,6 @@ void merge(struct IntVector *vector, int start, int middle, int end)
         j++;
         k++;
     }
+
 }
 #endif

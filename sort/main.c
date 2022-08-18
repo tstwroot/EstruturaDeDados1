@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
 #include "intvector.h"
 #include "merge.h"
 
@@ -10,14 +11,15 @@ int main(int argc, char* argv[])
         fprintf(stderr, "Invalid arguments! Size of vector needed!\n");
         exit(EXIT_FAILURE);
     }
+    clock_t start = clock();
+    
     struct IntVector *vector;
-    vector = create(8);
-    puts("Vetor criado!");
-    fillWithRandInt(vector, vector->capacity, 10);
-    print(vector);
-    puts("Iniciando a ordenação!");
+    size_t size_of_vector = atoi(argv[1]);
+    vector = create(size_of_vector+1);
+    fillWithRandInt(vector, vector->capacity, size_of_vector);
     mergesort(vector, 0, vector->capacity - 1);
-    puts("Finalizado!");
-    print(vector);
     destroy(vector);
+    clock_t end = clock();
+    double total = (double)(end - start) / CLOCKS_PER_SEC;
+    printf("Total: %lf\n", total);
 }
