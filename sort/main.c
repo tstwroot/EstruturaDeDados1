@@ -19,7 +19,9 @@ int main(int argc, char* argv[])
     fillWithRandInt(vector, vector->capacity, size_of_vector);
     mergesort(vector, 0, vector->capacity - 1);
     destroy(vector);
+
     clock_t end = clock();
+    
     double total = (double)(end - start) / CLOCKS_PER_SEC;
-    printf("Total: %lf\n", total);
+    printf("Tempo para %d posições: %lf\n", atoi(argv[1]), total);
 }

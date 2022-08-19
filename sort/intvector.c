@@ -4,12 +4,12 @@
 #include <string.h>
 #include <time.h>
 
-struct IntVector *create(int tam)
+struct IntVector *create(long int tam)
 {
     struct IntVector *vet = (struct IntVector*)calloc(1, sizeof(struct IntVector));
     vet->capacity = tam;
     vet->size = 0;
-    vet->data = (float*)calloc(tam, sizeof(float));
+    vet->data = (long int*)calloc(tam, sizeof(long int));
     return vet;
 }
 

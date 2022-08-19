@@ -4,10 +4,10 @@
 
 struct IntVector {
     int capacity, size;
-    int *data;
+    long int *data;
 };
 
-struct IntVector *create(int tam);           
+struct IntVector *create(long int tam);           
 void destroy(struct IntVector *vector);
 int size(struct IntVector *vector);
 int capacity(struct IntVector *vector);
