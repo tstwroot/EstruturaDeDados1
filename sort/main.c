@@ -1,8 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
-#include "intvector.h"
-#include "merge.h"
+#include "lists.h"
+#include "sort.h"
 
 int main(int argc, char* argv[])
 {

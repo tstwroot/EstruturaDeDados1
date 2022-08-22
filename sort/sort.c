@@ -1,14 +1,14 @@
-#ifndef _MERGE_H_
-#define _MERGE_H_
-
 #include <stdio.h>
 #include <stdlib.h>
-#include "intvector.h"
+#include "sort.h"
+
+long int count = 0;
 
 void mergesort(struct IntVector *vector, int start, int end)
 {
     if(end > start)
     {
+        count++;
         int middle = start + ((end - start) / 2);
         mergesort(vector, start, middle);
         mergesort(vector, (middle + 1), end);
@@ -19,7 +19,8 @@ void mergesort(struct IntVector *vector, int start, int end)
 void merge(struct IntVector *vector, int start, int middle, int end)
 {
     size_t lSize = (middle - start + 1), rSize = (end - middle);
-    int auxL[lSize], auxR[rSize];
+    int *auxL = (int*)malloc(lSize * sizeof(int));
+    int *auxR = (int*)malloc(rSize * sizeof(int));
 
     for(int i = 0; i < lSize; i++)
         auxL[i] = vector->data[start + i];
@@ -55,6 +56,6 @@ void merge(struct IntVector *vector, int start, int middle, int end)
         j++;
         k++;
     }
-
+    free(auxL);
+    free(auxR);
 }
-#endif
