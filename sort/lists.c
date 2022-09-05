@@ -15,7 +15,7 @@ struct IntVector *create(long int __size)
 
 void destroy(struct IntVector *vector)
 {
-    free(vector);
+	free(vector);
 }
 
 int size(struct IntVector * vector)
@@ -65,14 +65,14 @@ void append(struct IntVector * vector, int value)
     {
         fprintf(stdout, "This vector is done. Do you want reallocate one more element ? ");
         scanf(" %c", &choice);
-        if(strcmp(choice, '1'))
+        if(strcmp(&choice, '1') == 0)
         {
             vector = (struct IntVector*)realloc(vector, vector->capacity + 1 * sizeof(struct IntVector));
             vector->capacity++;
             vector->data[vector->capacity+1] = value;
             exit(EXIT_SUCCESS);
         }
-        else if(strcmp(choice, '0'))
+        else if(strcmp(&choice, '0') == 0)
         {
             exit(EXIT_SUCCESS);
         }

@@ -1,23 +1,24 @@
-#include "utils.h"
-#include "lists.h"
-#include <time.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <time.h>
+#include "utils.h"
+#include "lists.h"
 
-struct IntVector **createTestMatrix(struct IntVector *vector, int sizeI, int sizeJ)
+struct MatrixIntVector **createTestMatrix(struct IntVector *vector, int sizeI, long int sizeJ)
 {
-	struct IntVector **matrix = (struct IntVector **)malloc(sizeI * sizeof(struct IntVector));
+	struct MatrixIntVector **matrix = (struct MatrixIntVector **)malloc(sizeI * sizeof(struct MatrixIntVector));
 	for (int i = 0; i < sizeI; i++)
 	{
-		matrix[i] = (struct IntVector *)malloc(sizeJ * sizeof(struct IntVector));
+		matrix[i]->intvector = (struct IntVector *)malloc(sizeof(struct IntVector));
+		matrix[i]->intvector->data = (int*)malloc(sizeJ * sizeof(int));
 	}
 
 	for (int i = 0; i < sizeI; i++)
 	{
 		for (int j = 0; j < sizeJ; j++)
 		{
-			matrix[i]->data[j] = vector->data[j];
+			matrix[i]->intvector->data[j] = vector->data[j];
 		}
 	}
 	return (matrix);
@@ -52,9 +53,9 @@ int get_pivot(int *vetor, unsigned int size)
 	return Imelhor;
 }
 
-void swap(int *__n1, int *__n2)
+void swap(long int *__n1, long int *__n2)
 {
-	int aux = *__n1;
+	long int aux = *__n1;
 	*__n1 = *__n2;
 	*__n2 = aux;
 }
@@ -62,11 +63,6 @@ void swap(int *__n1, int *__n2)
 void usage()
 {
 	puts("USAGE: <size of vector> <max rand>");
-}
-
-void destroy(int *vector)
-{
-	free(vector);
 }
 
 void writeTimeInAFile(struct timing *time, FILE *output)
@@ -88,12 +84,12 @@ void printVector(int *vector, unsigned int size)
 	}
 }
 
-void fillWithRandNums(int *vector, unsigned size, int max)
+void fillWithRandNums(struct IntVector *vector, long int size, int max)
 {
 	srand(time(NULL));
 	for (int i = 0; i < size; i++)
 	{
-		vector[i] = rand() % max;
+		vector->data[i] = rand() % max;
 	}
 }
 
@@ -108,18 +104,4 @@ double getTimeExec(struct timing *time, char *point)
 		time->end = clock();
 		return (time->final = (double)(time->end - time->start) / CLOCKS_PER_SEC);
 	}
-}
-
-void invertVector(int vector[], int size)
-{
-    for (int i = size; i > 0; i--)
-    {
-        for (int j = 0; j < size; j++)
-        {
-            if (vector[j] < vector[j + 1])
-            {
-                swap(&vector[j], &vector[j + 1]);
-            }
-        }
-    }
 }

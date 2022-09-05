@@ -2,12 +2,19 @@
 #define _INTVECTOR_H_
 #include <stdbool.h>
 
-struct IntVector {
+struct IntVector
+{
     int capacity, size;
     long int *data;
 };
 
+struct MatrixIntVector
+{
+    struct IntVector *intvector;
+};
+
 struct IntVector *create(long int tam); 
+void destroy(struct IntVector *);
 int size(struct IntVector *vector);
 int capacity(struct IntVector *vector);
 int at(struct IntVector *vector, int pos);

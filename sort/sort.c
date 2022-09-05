@@ -1,19 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "sort.h"
-
-void (*sort_functions[])(int *, int, int) = {
-    bubble,
-    selectionSort,
-    mergesort,
-    quicksort_mp};
-
-void swap(int *a, int *b)
-{
-    int aux = *a;
-    *a = *b;
-    *b = aux;
-}
+#include "utils.h"
 
 void bubble(struct IntVector *vector, int size)
 {
@@ -33,9 +21,9 @@ void bubble(struct IntVector *vector, int size)
     }
 }
 
-void selectionSort(struct IntVector *vector, int end)
+void selectionSort(struct IntVector *vector, int start, int end)
 {
-    int minor = 0;
+    int minor = start;
     for (int i = 0; i < end; i++)
     {
         for (int j = i; j < end; j++)
@@ -175,29 +163,29 @@ void quicksort_mp(struct IntVector *vector, int start, int end)
         quick(vector->data, i, end);
 }
 
-void quick(struct IntVector *vector, int start, int end)
+void quick(int *vector, int start, int end)
 {
     int i = start, j = end - 1;
-    int pivo = vector->data[(start + end) / 2];
+    int pivo = vector[(start + end) / 2];
     while (i <= j)
     {
-        while (vector->data[i] < pivo && i < end)
+        while (vector[i] < pivo && i < end)
         {
             i++;
         }
-        while (vector->data[j] > pivo && j > start)
+        while (vector[j] > pivo && j > start)
         {
             j--;
         }
         if (i <= j)
         {
-            swap(vector->data + i, vector->data + j);
+            swap(vector + i, vector + j);
             i++;
             j--;
         }
     }
     if (j > start)
-        quick(vector->data, start, j + 1);
+        quick(vector, start, j + 1);
     if (i < end)
-        quick(vector->data, i, end);
+        quick(vector, i, end);
 }
