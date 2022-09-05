@@ -2,51 +2,51 @@
 #include <stdlib.h>
 #include "linkedlist.h"
 
-typedef struct _snode
+struct SNode
 {
     int value;
-    struct _snode *next;
-}SNode;
+    struct SNode *next;
+};
 
-typedef struct _sLinked_list
+struct LinkedList
 {
     int size;
-    SNode *start;
-}LinkedList;
+    struct SNode *start;
+};
 
-SNode *newNode(int value)
+struct SNode *newNode(int value)
 {
-    SNode *newNode = (SNode*)calloc(1, sizeof(SNode));
+    struct SNode *newNode = (struct SNode*)calloc(1, sizeof(struct SNode));
     newNode->value;
     newNode->next = NULL;
     return newNode;
 }
 
-LinkedList *newLinkedList()
+struct LinkedList *newLinkedList()
 {
-    LinkedList *newList = (LinkedList*)calloc(1, sizeof(LinkedList));
+    struct LinkedList *newList = (struct LinkedList*)calloc(1, sizeof(struct LinkedList));
     newList->start = NULL;
     return newList;
 }
 
-void addFirst(LinkedList *__linked_list, int value)
+void addFirst(struct LinkedList *__linked_list, int value)
 {
-    SNode *ref = newNode(value);
+    struct SNode *ref = newNode(value);
     ref->next = __linked_list->start;
     __linked_list->start = ref;
     __linked_list->size++;
 }
 
-void addLast(LinkedList *__linked_list, int value)
+void addLast(struct LinkedList *__linked_list, int value)
 {
-    SNode *ref = newNode(value);
+    struct SNode *ref = newNode(value);
     if(__linked_list->start == NULL)
     {
         __linked_list->start = ref;
     }
     else
     {
-        SNode *aux = __linked_list->start;
+        struct SNode *aux = __linked_list->start;
         while(aux->next != NULL)
         {
             aux = aux->next;
@@ -57,9 +57,9 @@ void addLast(LinkedList *__linked_list, int value)
     __linked_list->size++;
 }
 
-void printLinkedList(LinkedList *__linked_list)
+void printstruct(struct LinkedList *__linked_list)
 {
-    SNode *ref = __linked_list->start;
+    struct SNode *ref = __linked_list->start;
     fprintf(stdout, "[");
     while(ref->next != NULL)
     {

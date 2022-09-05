@@ -1,12 +1,13 @@
 #ifndef _LINKED_LIST_H_
 #define _LINKED_LIST_H_
 
-typedef struct _snode SNode;
-typedef struct _sLinked_list LinkedList;
+struct SNode;
+struct LinkedList;
 
-SNode *newNode(int);
-LinkedList *newLinkedList();
-void addFirst(LinkedList *__linked_list, int value);
-void addLast(LinkedList *__linked_list, int value);
+struct SNode *newNode(int);
+struct LinkedList *newLinkedList();
+void addFirst(struct LinkedList *__linked_list, int value);
+void addLast(struct LinkedList *__linked_list, int value);
+void printLinkedList(struct LinkedList *__linked_list);
 
 #endif
