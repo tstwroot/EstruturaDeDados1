@@ -1,27 +1,36 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include <time.h>
 #include "lists.h"
 #include "sort.h"
+#include "utils.h"
+#define FUNCTIONS 4
 
-int main(int argc, char* argv[])
+int main(int argc, char *argv[])
 {
-    if(argc != 2)
+    if (argc < 3)
     {
-        fprintf(stderr, "Invalid arguments! Size of vector needed!\n");
+        fprintf(stderr, "Error: This software requires 2 arguments to work!\n");
+        usage();
         exit(EXIT_FAILURE);
     }
-    clock_t start = clock();
-    
-    struct IntVector *vector;
-    size_t size_of_vector = atoi(argv[1]);
-    vector = create(size_of_vector+1);
-    fillWithRandInt(vector, vector->capacity, size_of_vector);
-    mergesort(vector, 0, vector->capacity - 1);
-    destroy(vector);
 
-    clock_t end = clock();
-    
-    double total = (double)(end - start) / CLOCKS_PER_SEC;
-    printf("Tempo para %d posições: %lf\n", atoi(argv[1]), total);
+    int size_vector = atoi(argv[1]), rand_max = atoi(argv[2]);
+    int *vector = create(size_vector);
+    fillWithRandNums(vector, size_vector, rand_max);
+
+    int **matrix;
+    matrix = createMatrix(vector, FUNCTIONS, size_vector);
+    struct timing *time = (struct timing*)malloc(sizeof(struct timing));
+    FILE *output;
+
+    for (int i = 0; i < FUNCTIONS; i++)
+    {
+        getTimeExec(time, "start");
+        (*sort_functions[i])(matrix[i], 0, size_vector);
+        getTimeExec(time, "end");
+        writeTimeInAFile(time, output);
+        memset(time, 0, sizeof(time));
+    }
 }

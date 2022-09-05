@@ -2,8 +2,12 @@
 #define _SORT_H_
 
 #include "lists.h"
-
-void mergesort(struct IntVector *intVector, int start, int end);
-void merge(struct IntVector *intVector, int start, int middle, int end);
+void swap(int*, int*);
+void bubble(struct IntVector*, int);
+void selectionSort(struct IntVector*, int);
+void mergesort(struct IntVector *, int , int );
+void merge(struct IntVector*, int , int , int );
+void quicksort_mp(struct IntVector*, int, int );
+void (*sort_functions[])(int *, int, int);
 
 #endif

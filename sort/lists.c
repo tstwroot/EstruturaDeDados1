@@ -4,13 +4,13 @@
 #include <string.h>
 #include <time.h>
 
-struct IntVector *create(long int tam)
+struct IntVector *create(long int __size)
 {
-    struct IntVector *vet = (struct IntVector*)calloc(1, sizeof(struct IntVector));
-    vet->capacity = tam;
-    vet->size = 0;
-    vet->data = (long int*)calloc(tam, sizeof(long int));
-    return vet;
+    struct IntVector *vector = (struct IntVector*)calloc(1, sizeof(struct IntVector));
+    vector->capacity = __size;
+    vector->size = 0;
+    vector->data = (long int*)calloc(__size, sizeof(long int));
+    return vector;
 }
 
 void destroy(struct IntVector *vector)
@@ -25,7 +25,7 @@ int size(struct IntVector * vector)
 
 int capacity(struct IntVector * vector)
 {
-    return vector->size;
+    return vector->capacity;
 }
 
 int at(struct IntVector * vector, int pos)
@@ -39,7 +39,7 @@ int at(struct IntVector * vector, int pos)
     return vector->data[pos];
 }
 
-int get(struct IntVector * vector, int pos)
+int get(struct IntVector* vector, int pos)
 {
     return vector->data[pos];
 }
@@ -88,27 +88,4 @@ void append(struct IntVector * vector, int value)
         exit(EXIT_SUCCESS);
     }
     
-}
-
-void print(struct IntVector *vector)
-{
-    printf("vector[");
-    for(int i = 0; i < vector->capacity; i++)
-    {
-        if(i == vector->size - 1)
-        {
-            printf("%d]\n", vector->data[i]);
-        }
-        else printf("%d, ", vector->data[i]);
-    }
-}
-
-void fillWithRandInt(struct IntVector *vector, int size, int max_rand)
-{
-    srand(time(NULL));
-    for(int i = 0; i < size; i++)
-    {
-        vector->data[i] = rand() % max_rand;
-        vector->size = size;
-    }
 }

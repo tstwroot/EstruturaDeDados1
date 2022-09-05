@@ -7,8 +7,7 @@ struct IntVector {
     long int *data;
 };
 
-struct IntVector *create(long int tam);           
-void destroy(struct IntVector *vector);
+struct IntVector *create(long int tam); 
 int size(struct IntVector *vector);
 int capacity(struct IntVector *vector);
 int at(struct IntVector *vector, int pos);
