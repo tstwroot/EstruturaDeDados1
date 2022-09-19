@@ -4,7 +4,7 @@
 #include <time.h>
 #include "../includes/lists.h"
 #include "../includes/sort.h"
-#include "../includes/utils.h"
+#include "../includes/helpers.h"
 #define FUNCTIONS 4
 
 // need to transform all this thing in a unit test

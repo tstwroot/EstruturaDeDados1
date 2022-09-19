@@ -21,5 +21,6 @@ int addOrd(struct LinkedList *__linked_list, long int value);
 void printLinkedList(struct LinkedList *__linked_list);
 struct IntVector *vectorize(struct LinkedList *__linked_list);
 int isOrd(struct LinkedList *__linked_list);
+void ordAll(struct LinkedList *__linked_list);
 
 #endif

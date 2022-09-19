@@ -104,6 +104,21 @@ int addOrd(struct LinkedList *__linked_list, long int value)
     __linked_list->size++;
 }
 
+// segmentation fault function, fix this bug...
+void ordAll(struct LinkedList *__linked_list)
+{
+    struct IntVector *v = vectorize(__linked_list);
+    quick(v, 0, v->size);
+    struct SNode *aux = __linked_list->start;
+    int i = 0;
+    while (aux->next != NULL)
+    {
+        aux->value = v->data[i];
+        aux = aux->next;
+        i++;
+    }
+}
+
 void printLinkedList(struct LinkedList *__linked_list)
 {
     struct SNode *ref = __linked_list->start;

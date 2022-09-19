@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <time.h>
-#include "utils.h"
+#include "helpers.h"
 #include "lists.h"
 
 struct MatrixIntVector **createTestMatrix(struct IntVector *vector, int sizeI, long int sizeJ)
