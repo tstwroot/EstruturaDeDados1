@@ -2,12 +2,12 @@
 #include <stdlib.h>
 #include <string.h>
 #include <time.h>
-#include "lists.h"
-#include "sort.h"
-#include "utils.h"
+#include "../includes/lists.h"
+#include "../includes/sort.h"
+#include "../includes/utils.h"
 #define FUNCTIONS 4
 
-
+// need to transform all this thing in a unit test
 
 int main(int argc, char *argv[])
 {

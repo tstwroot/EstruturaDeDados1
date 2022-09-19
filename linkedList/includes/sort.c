@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "sort.h"
-#include "utils.h"
+#include "helpers.h"
 
 void bubble(struct IntVector *vector, int size)
 {
