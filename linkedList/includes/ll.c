@@ -1,22 +1,49 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <errno.h>
 #include "ll.h"
 #include "sort.h"
 #include "lists.h"
 
-struct SNode *newNode(int value)
+void *newNode(int value, char type)
 {
-    struct SNode *newNode = (struct SNode *)calloc(1, sizeof(struct SNode));
-    newNode->value = value;
-    newNode->next = NULL;
-    return newNode;
+    if (strcmp(type, "-sl") == 0)
+    {
+        struct SNode *newNode = (struct SNode *)calloc(1, sizeof(struct SNode));
+        newNode->value = value;
+        newNode->next = NULL;
+        return newNode;
+    }
+    else if (strcmp(type, "-dl") == 0)
+    {
+        struct DSNode *newNode = (struct DSNode *)calloc(1, sizeof(struct DSNode));
+        newNode->value = value;
+        newNode->next = NULL;
+        return newNode;
+    }
+    else
+    {
+        fprintf(stderr, "Error: Invalid Type List!\n");
+        return;
+    }
 }
 
-struct LinkedList *newLinkedList()
+void *newLinkedList(char type)
 {
-    struct LinkedList *newList = (struct LinkedList *)calloc(1, sizeof(struct LinkedList));
-    newList->start = NULL;
-    return newList;
+    if (strcmp(type, "-sl") == 0)
+    {
+
+        struct LinkedList *newList = (struct LinkedList *)calloc(1, sizeof(struct LinkedList));
+        newList->start = NULL;
+        return newList;
+    }
+    if (strcmp(type, "-dl") == 0)
+    {
+
+        struct DLinkedList *newList = (struct DLinkedList *)calloc(1, sizeof(struct DLinkedList));
+        newList->start = NULL;
+        return newList;
+    }
 }
 
 void addFirst(struct LinkedList *__linked_list, long int value)
@@ -129,4 +156,14 @@ void printLinkedList(struct LinkedList *__linked_list)
         ref = ref->next;
     }
     fprintf(stdout, "NULL]\n");
+}
+
+void distruct(struct SNode *node)
+{
+    if (node->next == NULL)
+    {
+        return;
+    }
+    distruct(node->next);
+    free(node);
 }

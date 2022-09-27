@@ -1,15 +1,14 @@
 #include <stdio.h>
-#include "./includes/ll.h"
-#include "./includes/lists.h"
+#include <stdbool.h>
+#include "./includes/dl.h"
 
 int main(int argc, char **argv)
 {
-    struct LinkedList *list = newLinkedList();
-    addLast(list, 1);
-    addLast(list, 9);
-    addLast(list, 3);
-    addLast(list, 8);
-    printLinkedList(list);
-    ordAll(list);
-    printLinkedList(list);
+    struct DLinkedList *list = newList();
+    addFirst(list, 4);
+    addFirst(list, 7);
+    addFirst(list, 1);
+    addFirst(list, 40);
+    r_print(list);
+    r_destroy(list);
 }
